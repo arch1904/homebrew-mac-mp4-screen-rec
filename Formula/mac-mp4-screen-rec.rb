@@ -2,7 +2,7 @@ class MacMp4ScreenRec < Formula
   desc "Automatically convert macOS screen recordings from MOV to MP4"
   homepage "https://github.com/arch1904/MacMp4ScreenRec"
   url "https://github.com/arch1904/MacMp4ScreenRec/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "064a3dee68b04d9a37708583699a650780d6cadf427b4ef64e4be0a5d10536b2"
+  sha256 "cb3b7885b0dd4bde548a511e7c9a81341c9a914e2773d2588fa490e0d5b7b34d"
   license "MIT"
   version "1.0.0"
 

@@ -1,16 +1,23 @@
 class MacMp4ScreenRec < Formula
-  desc "Automatically convert macOS screen recordings from MOV to MP4"
+  desc "Automatically convert macOS screen recordings and other video files"
   homepage "https://github.com/arch1904/MacMp4ScreenRec"
-  url "https://github.com/arch1904/MacMp4ScreenRec/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "cb3b7885b0dd4bde548a511e7c9a81341c9a914e2773d2588fa490e0d5b7b34d"
+  url "https://github.com/arch1904/MacMp4ScreenRec/archive/refs/tags/v1.1.0.tar.gz"
+  sha256 "85e050c41534257c6adf5700c2a4f49ec63f20938de5fe234448f07f61ccdf6a"
   license "MIT"
-  version "1.0.0"
+  version "1.1.0"
+  head "https://github.com/arch1904/MacMp4ScreenRec.git", branch: "main"
+
+  livecheck do
+    url :stable
+    regex(/^v?(\d+(?:\.\d+)+)\.tar\.gz$/i)
+  end
 
   depends_on "ffmpeg"
   depends_on :macos
 
   def install
     bin.install "mac-mp4-screen-rec"
+    man1.install "docs/man/mac-mp4-screen-rec.1" if File.exist?("docs/man/mac-mp4-screen-rec.1")
   end
 
   def post_install
@@ -19,18 +26,48 @@ class MacMp4ScreenRec < Formula
   end
 
   def caveats
-    <<~EOS
-      To start converting screen recordings automatically:
-        mac-mp4-screen-rec start
+    if build.head?
+      <<~EOS
+        You installed the HEAD build from main.
 
-      By default, ~/Desktop is watched. Add more directories with:
-        mac-mp4-screen-rec add <path>
+        To start converting files automatically:
+          mac-mp4-screen-rec start
 
-      The service starts automatically on login once started.
-    EOS
+        Defaults:
+          watch path:       ~/Desktop
+          selection mode:   recordings-only
+          input extensions: mov
+          output extension: mp4
+          codecs:           copy/copy
+
+        You can inspect or change the full config with:
+          mac-mp4-screen-rec config
+          mac-mp4-screen-rec config --all-files --input-extensions mov,mkv
+          mac-mp4-screen-rec config --video-codec libx264 --audio-codec aac
+          mac-mp4-screen-rec config --keep-original-days 7
+      EOS
+    else
+      <<~EOS
+        To start converting files automatically:
+          mac-mp4-screen-rec start
+
+        Defaults:
+          watch path:       ~/Desktop
+          selection mode:   recordings-only
+          input extensions: mov
+          output extension: mp4
+          codecs:           copy/copy
+
+        You can inspect or change the full config with:
+          mac-mp4-screen-rec config
+          mac-mp4-screen-rec config --all-files --input-extensions mov,mkv
+          mac-mp4-screen-rec config --video-codec libx264 --audio-codec aac
+          mac-mp4-screen-rec config --keep-original-days 7
+      EOS
+    end
   end
 
   test do
-    assert_match "mac-mp4-screen-rec v#{version}", shell_output("#{bin}/mac-mp4-screen-rec version")
+    assert_match "mac-mp4-screen-rec v", shell_output("#{bin}/mac-mp4-screen-rec version")
   end
 end

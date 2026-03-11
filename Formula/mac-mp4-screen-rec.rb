@@ -1,10 +1,10 @@
 class MacMp4ScreenRec < Formula
   desc "Automatically convert macOS screen recordings and other video files"
   homepage "https://github.com/arch1904/MacMp4ScreenRec"
-  url "https://github.com/arch1904/MacMp4ScreenRec/archive/refs/tags/v1.1.0.tar.gz"
-  sha256 "85e050c41534257c6adf5700c2a4f49ec63f20938de5fe234448f07f61ccdf6a"
+  url "https://github.com/arch1904/MacMp4ScreenRec/archive/refs/tags/v1.2.0.tar.gz"
+  sha256 "d7b15f82e3f167ca85d59875eb1c50eae969b4216204fb087f8bab3689e075c2"
   license "MIT"
-  version "1.1.0"
+  version "1.2.0"
   head "https://github.com/arch1904/MacMp4ScreenRec.git", branch: "main"
 
   livecheck do
@@ -44,6 +44,8 @@ class MacMp4ScreenRec < Formula
           mac-mp4-screen-rec config
           mac-mp4-screen-rec config --all-files --input-extensions mov,mkv
           mac-mp4-screen-rec config --video-codec libx264 --audio-codec aac
+          mac-mp4-screen-rec config --map-video-codec hevc=libx264
+          mac-mp4-screen-rec config --map-audio-codec pcm_s16le=aac
           mac-mp4-screen-rec config --keep-original-days 7
       EOS
     else
@@ -62,6 +64,8 @@ class MacMp4ScreenRec < Formula
           mac-mp4-screen-rec config
           mac-mp4-screen-rec config --all-files --input-extensions mov,mkv
           mac-mp4-screen-rec config --video-codec libx264 --audio-codec aac
+          mac-mp4-screen-rec config --map-video-codec hevc=libx264
+          mac-mp4-screen-rec config --map-audio-codec pcm_s16le=aac
           mac-mp4-screen-rec config --keep-original-days 7
       EOS
     end

@@ -1,10 +1,10 @@
 class MacMp4ScreenRec < Formula
   desc "Automatically convert macOS screen recordings and other video files"
   homepage "https://github.com/arch1904/MacMp4ScreenRec"
-  url "https://github.com/arch1904/MacMp4ScreenRec/archive/refs/tags/v1.2.0.tar.gz"
-  sha256 "d7b15f82e3f167ca85d59875eb1c50eae969b4216204fb087f8bab3689e075c2"
+  url "https://github.com/arch1904/MacMp4ScreenRec/archive/refs/tags/v1.2.1.tar.gz"
+  sha256 "19579fea06c20819f232a8aa256dda9b7a0e669952889751f9a1a6f2faed973c"
   license "MIT"
-  version "1.2.0"
+  version "1.2.1"
   head "https://github.com/arch1904/MacMp4ScreenRec.git", branch: "main"
 
   livecheck do
